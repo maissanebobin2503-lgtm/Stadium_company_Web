@@ -1,0 +1,46 @@
+﻿@model List<Stadium_company.Models.QuestionnaireModel>
+
+@{
+    ViewData["Title"] = "Liste des Questionnaires";
+}
+
+<div class="container mt-4">
+    <h1 class="display-4 text-primary">Questionnaires</h1>
+    <hr />
+
+    <table class="table table-hover shadow-sm">
+        <thead class="table-dark">
+            <tr>
+                <th>Titre</th>
+                <th>Nombre de questions</th>
+                <th>Statut</th>
+                <th class="text-center">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var q in Model)
+            {
+                <tr>
+                    <td class="align-middle fw-bold">@q.Nom</td>
+                    <td class="align-middle">@q.NbQuestion questions</td>
+                    <td class="align-middle">
+                        @if (q.Publier)
+                        {
+                            <span class="badge bg-success">Publié</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-secondary">Brouillon</span>
+                        }
+                    </td>
+                    <td class="text-center">
+
+                        <a asp-action="Details" asp-route-id="@q.Id" class="btn btn-primary btn-sm">
+                            Ouvrir le questionnaire
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

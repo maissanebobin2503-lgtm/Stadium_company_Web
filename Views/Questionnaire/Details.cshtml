@@ -1,0 +1,28 @@
+﻿@model Stadium_company.Models.QuestionnaireModel
+
+<form asp-action="CalculerScore" method="post">
+    @* On cache l'ID du questionnaire pour savoir lequel on traite *@
+    <input type="hidden" name="idQuestionnaire" value="@Model.Id" />
+
+    @foreach (var question in Model.Questions)
+    {
+        <div class="card mb-3">
+            <div class="card-header">@question.Libelle</div>
+            <div class="card-body">
+                @foreach (var reponse in question.Choix)
+                {
+                    <div class="form-check">
+                        @* Le 'name' doit être l'ID de la question pour regrouper les radios *@
+                        <input class="form-check-input" type="radio"
+                               name="reponses[@question.Id]"
+                               value="@reponse.Id" id="rep-@reponse.Id">
+                        <label class="form-check-label" for="rep-@reponse.Id">
+                            @reponse.Contenu
+                        </label>
+                    </div>
+                }
+            </div>
+        </div>
+    }
+    <button type="submit" class="btn btn-success">Terminer le questionnaire</button>
+</form>

@@ -1,0 +1,22 @@
+﻿@{
+    ViewData["Title"] = "Résultats";
+    int score = ViewBag.Score;
+    int max = ViewBag.Max;
+    
+}
+
+<div class="container mt-5 text-center">
+    <div class="card shadow">
+        <div class="card-body">
+            <h1 class="display-4">Terminé !</h1>
+            <p class="lead">Votre score pour le questionnaire : <strong>@ViewBag.Nom</strong></p>
+            
+            <div class="my-4">
+                <h2 class="mb-3">@score / @max</h2>
+            </div>
+
+            <hr />
+            <a asp-action="Index" class="btn btn-primary btn-lg">Retour aux questionnaires</a>
+        </div>
+    </div>
+</div>
